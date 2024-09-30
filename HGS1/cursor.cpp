@@ -8,9 +8,6 @@
 #include"cursor.h"
 #include"input.h"
 #include"fade.h"
-#include"game.h"
-#include"tuto.h"
-#include"vs.h"
 
 //グローバル変数宣言
 LPDIRECT3DTEXTURE9 g_pTextureCursor;//テクスチャのポインタ
@@ -50,7 +47,7 @@ void InitCursor(void)
 	D3DXCreateTextureFromFile
 	(
 		pDevice,
-		TEXTURE_CURSOR,
+		0,
 		&g_pTextureCursor
 	);
 
@@ -112,9 +109,6 @@ void UpdateCursor(void)
 	float* pMouseMove;
 	FADE fade;
 	MODE mode;
-	GAMESTATE state;
-	GAMESTATE Tstate;
-	VSSTATE Vstate;
 
 	g_Cursor.move.x = 0;
 	g_Cursor.move.y = 0;
@@ -168,13 +162,10 @@ void UpdateCursor(void)
 
 		fade = GetFade();
 		mode = GetMode();
-		state = GetGameState();
-		Tstate = GetTutoState();
-		Vstate = GetVsState();
 		switch (g_Cursor.state)
 		{
 		case CURSORSTATE_NONE:
-			if (fade == FADE_NONE && ((mode != MODE_GAME&&mode!=MODE_TUTO && mode != MODE_VS) || state == GAMESTATE_PAUSE || Tstate == GAMESTATE_PAUSE || Vstate == VSSTATE_PAUSE) && mode != MODE_DEMO)
+			if (fade == FADE_NONE && ((mode != MODE_GAME&&mode!=MODE_TUTO && mode != MODE_VS)) && mode != MODE_DEMO)
 			{
 			    g_Cursor.state = CURSORSTATE_NORMAL;
 				pVtx[0].col = D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f);
@@ -184,7 +175,7 @@ void UpdateCursor(void)
 			}
 			break;
 		case CURSORSTATE_NORMAL:
-			if (fade != FADE_NONE|| ((mode==MODE_GAME||mode==MODE_TUTO || mode == MODE_VS)&&state != GAMESTATE_PAUSE&& Tstate != GAMESTATE_PAUSE && Vstate != VSSTATE_PAUSE) || mode == MODE_DEMO)
+			if (fade != FADE_NONE|| ((mode==MODE_GAME||mode==MODE_TUTO || mode == MODE_VS)) || mode == MODE_DEMO)
 			{
 				g_Cursor.state = CURSORSTATE_NONE;
 

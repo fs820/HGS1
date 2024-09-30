@@ -37,7 +37,7 @@ void InitScore(void)
 	D3DXCreateTextureFromFile
 	(
 		pDevice,
-		TEXTURE_SCORE,
+		0,
 		&g_pTextureScore
 	);
 

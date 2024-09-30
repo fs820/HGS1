@@ -34,16 +34,7 @@ DWORD g_aSizeAudio[SOUND_LABEL_MAX] = {};					// オーディオデータサイズ
 SOUNDINFO g_aSoundInfo[SOUND_LABEL_MAX] =
 {
 	{"data/BGM/野良猫は宇宙を目指した.wav", -1}, //BGM1
-	{"data/BGM/きらめきを探して.wav", -1},       //BGM2
-	{"data/BGM/なんでしょう？.wav", -1},         //BGM3
-	{"data/BGM/Morning.wav", -1},                //BGM4
-	{"data/BGM/パステルハウス.wav", -1},         //BGM5
-	{"data/BGM/自宅にて.wav", -1},               //BGM6
 	{"data/SE/シャキーン3.wav", 0},              //SE1
-	{"data/SE/爆発1.wav", 0},                    //SE2
-	{"data/SE/ラッパのファンファーレ.wav", 0},   //SE3
-	{"data/SE/呪いの旋律.wav", 0},               //SE4
-	{"data/SE/男衆「イヤッホー！」.wav", 0},     //SE5
 };
 
 //=============================================================================

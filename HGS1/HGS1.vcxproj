@@ -145,10 +145,36 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="back.cpp" />
+    <ClCompile Include="cursor.cpp" />
+    <ClCompile Include="data.cpp" />
+    <ClCompile Include="effect.cpp" />
+    <ClCompile Include="exef.cpp" />
+    <ClCompile Include="fade.cpp" />
+    <ClCompile Include="input.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="movie.cpp" />
+    <ClCompile Include="player.cpp" />
+    <ClCompile Include="rank.cpp" />
+    <ClCompile Include="score.cpp" />
+    <ClCompile Include="sound.cpp" />
+    <ClCompile Include="title.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="back.h" />
+    <ClInclude Include="cursor.h" />
+    <ClInclude Include="data.h" />
+    <ClInclude Include="effect.h" />
+    <ClInclude Include="exef.h" />
+    <ClInclude Include="fade.h" />
+    <ClInclude Include="input.h" />
     <ClInclude Include="main.h" />
+    <ClInclude Include="movie.h" />
+    <ClInclude Include="player.h" />
+    <ClInclude Include="rank.h" />
+    <ClInclude Include="score.h" />
+    <ClInclude Include="sound.h" />
+    <ClInclude Include="title.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -15,7 +15,6 @@ MODE g_mode = MODE_TITLE;
 HINSTANCE g_hInstance;
 HWND g_hWnd;
 bool g_bPause = false;
-bool g_bFullScreen = false;
 LPD3DXFONT g_pFont = NULL;//フォントポインタ
 int g_nCountFPS = 0;//FPSカウンタ
 bool g_bDebug = true;
@@ -580,53 +579,53 @@ void ReleaseCursor(void)
 }
 
 
-//-------------------------------------------------
-// フルスクリーンとウィンドウモードを切り替える関数
-//-------------------------------------------------
-void ToggleFullScreen(HWND hWnd)
-{
-	static WINDOWPLACEMENT wpPrev = { sizeof(wpPrev) };
-
-	g_bFullScreen = !g_bFullScreen; // フラグを反転
-
-	// ウィンドウスタイルを変更
-	if (g_bFullScreen)
-	{
-		GetWindowPlacement(hWnd, &wpPrev);
-
-		SetWindowLong(hWnd, GWL_STYLE, WS_POPUP);
-		SetWindowPos(hWnd, HWND_TOP, 0, 0, GetSystemMetrics(SM_CXSCREEN), GetSystemMetrics(SM_CYSCREEN), SWP_NOZORDER | SWP_FRAMECHANGED);
-
-		//ディスプレイ設定を変更
-		DEVMODE dmScreenSettings;
-		memset(&dmScreenSettings, 0, sizeof(dmScreenSettings));
-		dmScreenSettings.dmSize = sizeof(dmScreenSettings);
-		dmScreenSettings.dmPelsWidth = SCREEN_WIDTH;
-		dmScreenSettings.dmPelsHeight = SCREEN_HEIGHT;
-		dmScreenSettings.dmBitsPerPel = 32;
-		dmScreenSettings.dmFields = DM_BITSPERPEL | DM_PELSWIDTH | DM_PELSHEIGHT;
-
-		if (ChangeDisplaySettings(&dmScreenSettings, CDS_FULLSCREEN) != DISP_CHANGE_SUCCESSFUL)
-		{
-			// フルスクリーン設定に失敗した場合、ウィンドウモードに戻す
-			SetWindowLong(hWnd, GWL_STYLE, WS_OVERLAPPEDWINDOW);
-			SetWindowPlacement(hWnd, &wpPrev);
-			SetWindowPos(hWnd, NULL, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOZORDER | SWP_FRAMECHANGED);
-			g_bFullScreen = false;
-		}
-	}
-	else
-	{
-		ChangeDisplaySettings(NULL, 0);
-
-		SetWindowLong(hWnd, GWL_STYLE, WS_OVERLAPPEDWINDOW);
-		SetWindowPlacement(hWnd, &wpPrev);
-		SetWindowPos(hWnd, NULL, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOZORDER | SWP_FRAMECHANGED);
-	}
-
-	// デバイスを再作成
-	//ResetDevice();
-}
+////-------------------------------------------------
+//// フルスクリーンとウィンドウモードを切り替える関数
+////-------------------------------------------------
+//void ToggleFullScreen(HWND hWnd)
+//{
+//	static WINDOWPLACEMENT wpPrev = { sizeof(wpPrev) };
+//
+//	g_bFullScreen = !g_bFullScreen; // フラグを反転
+//
+//	// ウィンドウスタイルを変更
+//	if (g_bFullScreen)
+//	{
+//		GetWindowPlacement(hWnd, &wpPrev);
+//
+//		SetWindowLong(hWnd, GWL_STYLE, WS_POPUP);
+//		SetWindowPos(hWnd, HWND_TOP, 0, 0, GetSystemMetrics(SM_CXSCREEN), GetSystemMetrics(SM_CYSCREEN), SWP_NOZORDER | SWP_FRAMECHANGED);
+//
+//		//ディスプレイ設定を変更
+//		DEVMODE dmScreenSettings;
+//		memset(&dmScreenSettings, 0, sizeof(dmScreenSettings));
+//		dmScreenSettings.dmSize = sizeof(dmScreenSettings);
+//		dmScreenSettings.dmPelsWidth = SCREEN_WIDTH;
+//		dmScreenSettings.dmPelsHeight = SCREEN_HEIGHT;
+//		dmScreenSettings.dmBitsPerPel = 32;
+//		dmScreenSettings.dmFields = DM_BITSPERPEL | DM_PELSWIDTH | DM_PELSHEIGHT;
+//
+//		if (ChangeDisplaySettings(&dmScreenSettings, CDS_FULLSCREEN) != DISP_CHANGE_SUCCESSFUL)
+//		{
+//			// フルスクリーン設定に失敗した場合、ウィンドウモードに戻す
+//			SetWindowLong(hWnd, GWL_STYLE, WS_OVERLAPPEDWINDOW);
+//			SetWindowPlacement(hWnd, &wpPrev);
+//			SetWindowPos(hWnd, NULL, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOZORDER | SWP_FRAMECHANGED);
+//			g_bFullScreen = false;
+//		}
+//	}
+//	else
+//	{
+//		ChangeDisplaySettings(NULL, 0);
+//
+//		SetWindowLong(hWnd, GWL_STYLE, WS_OVERLAPPEDWINDOW);
+//		SetWindowPlacement(hWnd, &wpPrev);
+//		SetWindowPos(hWnd, NULL, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOZORDER | SWP_FRAMECHANGED);
+//	}
+//
+//	// デバイスを再作成
+//	//ResetDevice();
+//}
 
 ////----------------------------
 //// デバイスを再作成する関数

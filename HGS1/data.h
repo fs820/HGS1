@@ -11,6 +11,7 @@
 #include"main.h"
 #include<stdio.h>
 
+#define DATA_FILE "data\\DATA\\data.bin"
 #define MAX_DATA (10)//保存するスコアの数
 
 //プロトタイプ宣言

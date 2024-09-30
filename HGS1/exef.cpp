@@ -6,9 +6,7 @@
 //---------------------------------------
 
 #include"exef.h"
-#include"bullet.h"
 #include"player.h"
-#include"enemy.h"
 #include"effect.h"
 #include"sound.h"
 
@@ -114,5 +112,5 @@ void SetExef(D3DXVECTOR3 pos, float fLength, bool bSenter)
 			break;
 		}
 	}
-	PlaySound(SOUND_LABEL_EXPLOSION);
+	PlaySound(SOUND_LABEL_TITLE);
 }

@@ -9,8 +9,6 @@
 #define _PLAYER_H_
 
 #include"main.h"
-#include"game.h"
-#include"item.h"
 
 //プレイヤー情報
 #define PLAYER_WIDTH (180)//幅
@@ -44,7 +42,7 @@ typedef struct
 {
 	int nCounterAnim;//プレイヤーの更新間隔
 	int nPatternAnim;//プレイヤーのアニメーションパターン管理
-	D3DXVECTOR3 pos[POS_MAX];//プレイヤー座標管理
+	D3DXVECTOR3 pos;//プレイヤー座標管理
 	D3DXVECTOR3 Oldpos;//前フレームのpos
 	D3DXVECTOR3 move;//プレイヤースピード管理
 	D3DXVECTOR3 rot;//プレイヤー向き管理
@@ -52,13 +50,12 @@ typedef struct
 	float fLength;//対角線の長さ(大きさ)
 	float fLengthDef;//対角線の長さ(大きさ)の初期値
 	float fAngle;//対角線の角度
-	TYPE BulletType;//今の弾
 	int BulletCount;//弾数
 	int nRema;//残機
 	int nLife;//体力
 	PLAYERSTATE state;//状態
 	int nCounterState;//状態カウンター
-	bool bDisp[POS_MAX];//表示状態
+	bool bDisp;//表示状態
 }Player;
 
 //プロトタイプ宣言
@@ -69,6 +66,5 @@ void DrawPlayer(void);//プレイヤーの描画処理
 void HitPlayer(int nDamage);//プレイヤーヒット処理
 LPDIRECT3DVERTEXBUFFER9 GetPlayerBuffer(void);//プレイヤーバッファの取得
 Player* GetPlayer(void);//プレイヤー情報取得
-bool bOberP1(void);//プレイヤーが画面にいるか
 
 #endif _PLAYER_H_

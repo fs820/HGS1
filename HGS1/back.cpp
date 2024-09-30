@@ -6,7 +6,6 @@
 //---------------------------------------
 
 #include"back.h"
-#include"boss.h"
 
 #define FIELD_SIZE (2)//フィールド倍率
 #define FIELD_MOVE_INA (0.01f)//フィールドスピード倍率
@@ -45,7 +44,7 @@ void InitBack(void)
 	D3DXCreateTextureFromFile
 	(
 		pDevice,
-		TEXTURE_NAME_FIELD,
+		0,
 		&g_pTextureBack
 	);
 
@@ -108,23 +107,11 @@ void UninitBack(void)
 void UpdateBack(void)
 {
 	VERTEX_2D* pVtx;//頂点情報ポインタ
-	Boss* pBoss;//ボスポインタ
 	float Xmove=0.0f, Ymove=0.0f;//動き管理
 
-	pBoss = GetBoss();//ボス情報取得
-	for (int i = 0; i < MAX_BOSS; i++, pBoss++)
-	{//ボスの数だけ繰り返す
-		if (pBoss->bUse == true)
-		{//ボスが使用されていたら
-			//ボスの動きを取得
-			Xmove = pBoss->move.x;
-			Ymove = pBoss->move.y;
-		}
-	}
-
 	//テクスチャ座標を動かす
-	g_PosTexU += Xmove * FIELD_MOVE_INA;
-	g_PosTexV += Ymove * FIELD_MOVE_INA;
+	g_PosTexU += Xmove;
+	g_PosTexV += Ymove;
 
 	g_pVtxBuffBack->Lock(0, 0, (void**)&pVtx, 0);//バッファのロック
 
